@@ -14,7 +14,11 @@ def remove_protection(file_path, temp_folder):
     excel.Application.Quit()
     return new_file_path
 
-def append_excel_files(input_folder, output_file):
+def append_excel_files():
+
+    input_folder = r'C:\Users\allan.ribeiro\OneDrive\Embrapii\ETL SRInfo Equipes\data_raw'
+    output_file = r'C:\Users\allan.ribeiro\OneDrive\Embrapii\ETL SRInfo Equipes\data_processed\srinfo_equipe_ues.xlsx'
+
     data_temp_folder = os.path.join(input_folder, 'data_temp')
     if not os.path.exists(data_temp_folder):
         os.makedirs(data_temp_folder)

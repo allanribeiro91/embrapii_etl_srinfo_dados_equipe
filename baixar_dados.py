@@ -1,3 +1,5 @@
+import os
+from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -5,6 +7,10 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from selenium.webdriver.edge.service import Service as EdgeService
+
+# Carregar variáveis do arquivo .env
+load_dotenv()
+SENHA = os.getenv('SENHA')
 
 def baixar_dados():
     # Configurar o WebDriver usando webdriver-manager
@@ -22,17 +28,18 @@ def baixar_dados():
     try:
         # 1. Entrar no link
         driver.get('https://srinfo.embrapii.org.br/users/login/')
+        time.sleep(5)
         
         # username e senha
         username_field = WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.NAME, 'username'))
+            EC.element_to_be_clickable((By.ID, 'id_username'))
         )
         username_field.send_keys("allan.ribeiro")
         
         password_field = WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.NAME, 'password'))
         )
-        password_field.send_keys("")
+        password_field.send_keys(SENHA)
 
 
         # 2. Clicar em "btn-primary"
