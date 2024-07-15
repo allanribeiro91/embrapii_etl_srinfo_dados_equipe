@@ -1,6 +1,7 @@
 import pandas as pd
 import os
 from datetime import datetime
+from mover_para_sharepoint import mover_para_sharepoint
 
 def criar_tabela_pessoa_vinculo_ue(caminho_arquivo):
     # Carrega o arquivo Excel
@@ -21,3 +22,6 @@ def criar_tabela_pessoa_vinculo_ue(caminho_arquivo):
     # Salva o resultado em um novo arquivo Excel
     output_file = r'data_processed/tabela_pessoa_vinculo_ue.xlsx'
     df.to_excel(output_file, index=False)
+
+    # Mover para SharePoint
+    mover_para_sharepoint(output_file)

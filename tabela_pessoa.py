@@ -1,5 +1,6 @@
 import pandas as pd
 import os
+from mover_para_sharepoint import mover_para_sharepoint
 
 def criar_tabela_pessoa(caminho_arquivo):
     # Verifica se o arquivo existe antes de tentar abrir
@@ -28,3 +29,6 @@ def criar_tabela_pessoa(caminho_arquivo):
     # Salva o resultado em um novo arquivo Excel
     output_path = 'data_processed/tabela_pessoa.xlsx'
     df.to_excel(output_path, index=False)
+
+    # Mover para SharePoint
+    mover_para_sharepoint(output_path)

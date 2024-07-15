@@ -1,5 +1,4 @@
 import os
-from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -8,11 +7,9 @@ import time
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from selenium.webdriver.edge.service import Service as EdgeService
 
-# Carregar variáveis do arquivo .env
-load_dotenv()
-SENHA = os.getenv('SENHA')
 
-def baixar_dados():
+
+def baixar_dados(username, password):
     # Configurar o WebDriver usando webdriver-manager
     edge_service = EdgeService(EdgeChromiumDriverManager().install())
     options = webdriver.EdgeOptions()
@@ -34,12 +31,12 @@ def baixar_dados():
         username_field = WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.ID, 'id_username'))
         )
-        username_field.send_keys("allan.ribeiro")
+        username_field.send_keys(username)
         
         password_field = WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.NAME, 'password'))
         )
-        password_field.send_keys(SENHA)
+        password_field.send_keys(password)
 
 
         # 2. Clicar em "btn-primary"
